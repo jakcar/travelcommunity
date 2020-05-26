@@ -1,9 +1,9 @@
 import * as React from 'react'
-import { StyleSheet, View, Text } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
-import SearchForm from '../components/SearchForm'
+import AddForm from '../components/AddForm'
 
-function HomeScreen() {
+export default function AddTripScreen() {
   return (
     <View style={styles.container}>
       <ScrollView
@@ -11,18 +11,11 @@ function HomeScreen() {
         contentContainerStyle={styles.contentContainer}
       >
         <View style={styles.welcomeContainer}>
-          <SearchForm />
-        </View>
-        <View style={styles.welcomeContainer}>
-          <Text>Sökresultat ska visas här...</Text>
+          <AddForm />
         </View>
       </ScrollView>
     </View>
   )
-}
-
-HomeScreen.navigationOptions = {
-  header: null
 }
 
 const styles = StyleSheet.create({
@@ -39,5 +32,3 @@ const styles = StyleSheet.create({
     marginTop: 10
   }
 })
-
-export default HomeScreen
