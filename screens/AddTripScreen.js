@@ -1,9 +1,11 @@
 import * as React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, Text, Button } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import AddForm from '../components/AddForm'
+import { inject, observer } from 'mobx-react'
 
-export default function AddTripScreen() {
+const AddTripScreen = (tripStore) => {
+  console.log(tripStore.store.loggedInStatus)
   return (
     <View style={styles.container}>
       <ScrollView
@@ -12,6 +14,12 @@ export default function AddTripScreen() {
       >
         <View style={styles.welcomeContainer}>
           <AddForm />
+          <Text></Text>
+          <View>
+            <Button onPress={() => tripStore.store.login()} title="Logga in" />
+            <Button onPress={() => tripStore.store.logout()} title="Logga ut" />
+            <Text>{`Loginstatus: ${tripStore.store.loggedInStatus}`}</Text>
+          </View>
         </View>
       </ScrollView>
     </View>
@@ -32,3 +40,5 @@ const styles = StyleSheet.create({
     marginTop: 10
   }
 })
+
+export default inject((tripStore) => tripStore)(observer(AddTripScreen))
