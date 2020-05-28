@@ -1,11 +1,13 @@
 import * as React from 'react'
-import { StyleSheet, View, Text, Button } from 'react-native'
+import { StyleSheet, View, Text } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import AddForm from '../components/AddForm'
-import { inject, observer } from 'mobx-react'
+import { observer } from 'mobx-react'
+import { useStores } from '../hooks/use-stores'
 
-const AddTripScreen = (tripStore) => {
-  console.log(tripStore.store.loggedInStatus)
+const AddTripScreen = observer(() => {
+  const { userStore } = useStores()
+
   return (
     <View style={styles.container}>
       <ScrollView
@@ -13,18 +15,32 @@ const AddTripScreen = (tripStore) => {
         contentContainerStyle={styles.contentContainer}
       >
         <View style={styles.welcomeContainer}>
-          <AddForm />
-          <Text></Text>
-          <View>
-            <Button onPress={() => tripStore.store.login()} title="Logga in" />
-            <Button onPress={() => tripStore.store.logout()} title="Logga ut" />
-            <Text>{`Loginstatus: ${tripStore.store.loggedInStatus}`}</Text>
-          </View>
+          {userStore.loggedInStatus ? (
+            <AddForm />
+          ) : (
+            <Text>Logga in för att lägga till resor.</Text>
+          )}
         </View>
       </ScrollView>
     </View>
   )
-}
+})
+
+// const AddTripScreen = () => {
+//   return (
+//     <View style={styles.container}>
+//       <ScrollView
+//         style={styles.container}
+//         contentContainerStyle={styles.contentContainer}
+//       >
+//         <View style={styles.welcomeContainer}>
+//           <AddForm />
+//           <Text></Text>
+//         </View>
+//       </ScrollView>
+//     </View>
+//   )
+// }
 
 const styles = StyleSheet.create({
   container: {
@@ -41,4 +57,6 @@ const styles = StyleSheet.create({
   }
 })
 
-export default inject((tripStore) => tripStore)(observer(AddTripScreen))
+export default AddTripScreen
+
+// export default inject((tripStore) => tripStore)(observer(AddTripScreen))

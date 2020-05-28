@@ -3,8 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 import 'mobx-react-lite/batchingForReactNative'
-import { Provider } from 'mobx-react'
-import tripStore from './stores/store'
+import { OverflowMenuProvider } from 'react-navigation-header-buttons'
 
 import useCachedResources from './hooks/useCachedResources'
 import TabNavigator from './navigation/TabNavigator'
@@ -18,15 +17,15 @@ function App() {
     return null
   } else {
     return (
-      <Provider store={tripStore}>
-        <View style={styles.container}>
-          <NavigationContainer>
+      <View style={styles.container}>
+        <NavigationContainer>
+          <OverflowMenuProvider>
             <Stack.Navigator>
               <Stack.Screen name="Root" component={TabNavigator} />
             </Stack.Navigator>
-          </NavigationContainer>
-        </View>
-      </Provider>
+          </OverflowMenuProvider>
+        </NavigationContainer>
+      </View>
     )
   }
 }

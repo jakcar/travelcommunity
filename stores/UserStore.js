@@ -1,10 +1,12 @@
 import { observable, action } from 'mobx'
 
-class tripStore {
+export class UserStore {
   @observable
   counter = 0
 
-  @observable testString = 'Hej från lagret'
+  @action increaseNumber = () => {
+    this.counter++
+  }
 
   @observable loggedInStatus = false
 
@@ -15,14 +17,4 @@ class tripStore {
   @action logout = () => {
     this.loggedInStatus = false
   }
-
-  @action changeText = () => {
-    this.testString = 'Vooo'
-  }
-
-  @action increaseNumber = () => {
-    this.counter++
-  }
 }
-
-export default new tripStore()

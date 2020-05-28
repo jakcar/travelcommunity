@@ -2,10 +2,15 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import * as React from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import {
-  HeaderButtons,
-  HeaderButton,
-  Item
+  // HeaderButtons,
+  // HeaderButton,
+  // Item,
+  HiddenItem,
+  OverflowMenu
 } from 'react-navigation-header-buttons'
+
+import { observer } from 'mobx-react'
+import { useStores } from '../hooks/use-stores'
 
 import TabBarIcon from '../components/TabBarIcon'
 import HomeScreen from '../screens/HomeScreen'
@@ -15,31 +20,43 @@ import AddTripScreen from '../screens/AddTripScreen'
 const BottomTab = createBottomTabNavigator()
 const INITIAL_ROUTE_NAME = 'Home'
 
-export default function TabNavigator({ navigation, route }) {
-  const IoniconsHeaderButton = (props) => (
-    <HeaderButton
-      {...props}
-      IconComponent={Ionicons}
-      iconSize={30}
-      color="#9c9c9c"
-    />
-  )
+const TabNavigator = observer(({ navigation, route }) => {
+  const { userStore } = useStores()
+
+  // const IoniconsHeaderButton = (props) => (
+  //   <HeaderButton
+  //     {...props}
+  //     IconComponent={Ionicons}
+  //     iconSize={30}
+  //     color="#9c9c9c"
+  //   />
+  // )
 
   navigation.setOptions({ headerTitle: getHeaderTitle(route) })
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <HeaderButtons HeaderButtonComponent={IoniconsHeaderButton}>
-          <Item
-            title="settings"
-            iconName="md-person"
-            onPress={() => alert('hej')}
-          />
-        </HeaderButtons>
+        // <HeaderButtons HeaderButtonComponent={IoniconsHeaderButton}>
+        //   <Item
+        //     title="settings"
+        //     iconName="md-person"
+        //     onPress={() => alert('hej')}
+        //   />
+        <OverflowMenu
+          style={{ marginHorizontal: 10 }}
+          OverflowIcon={<Ionicons name="md-person" size={30} color="#9c9c9c" />}
+        >
+          {userStore.loggedInStatus ? (
+            <HiddenItem title="Logout" onPress={() => userStore.logout()} />
+          ) : (
+            <HiddenItem title="Login" onPress={() => userStore.login()} />
+          )}
+        </OverflowMenu>
+        // </HeaderButtons>
       )
     })
-  }, [])
+  }, [userStore.loggedInStatus])
 
   return (
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
@@ -76,7 +93,9 @@ export default function TabNavigator({ navigation, route }) {
       />
     </BottomTab.Navigator>
   )
-}
+})
+
+export default TabNavigator
 
 function getHeaderTitle(route) {
   const routeName =
