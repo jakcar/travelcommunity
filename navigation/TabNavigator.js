@@ -50,7 +50,10 @@ const TabNavigator = observer(({ navigation, route }) => {
           {userStore.loggedInStatus ? (
             <HiddenItem title="Logout" onPress={() => userStore.logout()} />
           ) : (
-            <HiddenItem title="Login" onPress={() => userStore.login()} />
+            <HiddenItem
+              title="Login"
+              onPress={() => navigation.navigate('Login')}
+            />
           )}
         </OverflowMenu>
         // </HeaderButtons>

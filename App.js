@@ -7,6 +7,7 @@ import { OverflowMenuProvider } from 'react-navigation-header-buttons'
 
 import useCachedResources from './hooks/useCachedResources'
 import TabNavigator from './navigation/TabNavigator'
+import LoginScreen from './screens/LoginScreen'
 
 const Stack = createStackNavigator()
 
@@ -22,6 +23,7 @@ function App() {
           <OverflowMenuProvider>
             <Stack.Navigator>
               <Stack.Screen name="Root" component={TabNavigator} />
+              <Stack.Screen name="Login" component={LoginScreen} />
             </Stack.Navigator>
           </OverflowMenuProvider>
         </NavigationContainer>

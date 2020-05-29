@@ -1,13 +1,12 @@
 import * as React from 'react'
 import { StyleSheet, View, Text } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
-import AddForm from '../components/AddForm'
+import LoginForm from '../components/LoginForm'
 import { observer } from 'mobx-react'
 import { useStores } from '../hooks/use-stores'
 
-const AddTripScreen = observer(() => {
+const LoginScreen = observer(() => {
   const { userStore } = useStores()
-
   return (
     <View style={styles.container}>
       <ScrollView
@@ -15,11 +14,7 @@ const AddTripScreen = observer(() => {
         contentContainerStyle={styles.contentContainer}
       >
         <View style={styles.welcomeContainer}>
-          {userStore.loggedInStatus ? (
-            <AddForm />
-          ) : (
-            <Text>Logga in för att lägga till resor.</Text>
-          )}
+          {userStore.loggedInStatus ? <Text>Inloggad!</Text> : <LoginForm />}
         </View>
       </ScrollView>
     </View>
@@ -41,4 +36,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default AddTripScreen
+export default LoginScreen
