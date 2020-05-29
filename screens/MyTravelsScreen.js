@@ -4,7 +4,7 @@ import { useStores } from '../hooks/use-stores'
 import { StyleSheet, Text, View, Button } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 
-const ExtraScreen = observer(() => {
+const MyTravelsScreen = observer(() => {
   const { userStore, generalStore } = useStores()
   return (
     <View style={styles.container}>
@@ -32,7 +32,7 @@ const ExtraScreen = observer(() => {
   )
 })
 
-export default ExtraScreen
+export default MyTravelsScreen
 
 const styles = StyleSheet.create({
   container: {

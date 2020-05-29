@@ -14,8 +14,9 @@ import { useStores } from '../hooks/use-stores'
 
 import TabBarIcon from '../components/TabBarIcon'
 import HomeScreen from '../screens/HomeScreen'
-import ExtraScreen from '../screens/ExtraScreen'
+import MyTravelsScreen from '../screens/MyTravelsScreen'
 import AddTripScreen from '../screens/AddTripScreen'
+import PopularScreen from '../screens/PopularScreen'
 
 const BottomTab = createBottomTabNavigator()
 const INITIAL_ROUTE_NAME = 'Home'
@@ -74,6 +75,16 @@ const TabNavigator = observer(({ navigation, route }) => {
         }}
       />
       <BottomTab.Screen
+        name="Popular"
+        component={PopularScreen}
+        options={{
+          title: 'Topplista',
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon focused={focused} name="md-star" />
+          )
+        }}
+      />
+      <BottomTab.Screen
         name="Add"
         component={AddTripScreen}
         options={{
@@ -86,7 +97,7 @@ const TabNavigator = observer(({ navigation, route }) => {
 
       <BottomTab.Screen
         name="Links"
-        component={ExtraScreen}
+        component={MyTravelsScreen}
         options={{
           title: 'Mina resor',
           tabBarIcon: ({ focused }) => (
@@ -107,6 +118,8 @@ function getHeaderTitle(route) {
   switch (routeName) {
     case 'Home':
       return 'Sök resa'
+    case 'Popular':
+      return 'Topplista'
     case 'Add':
       return 'Lägg till resa'
     case 'Links':
