@@ -15,12 +15,9 @@ const MyTravelsScreen = observer(() => {
         {userStore.loggedInStatus ? (
           <View style={styles.welcomeContainer}>
             <Text>Användarens resor ska listas här...</Text>
-            <Text> {generalStore.testString}</Text>
+            {/* <Text> {generalStore.testString}</Text>
             <Text> {userStore.counter}</Text>
-            <Button onPress={() => userStore.increaseNumber()} title="Plus" />
-            <Button onPress={() => userStore.login()} title="Logga in" />
-            <Button onPress={() => userStore.logout()} title="Logga ut" />
-            <Text>{`Loginstatus: ${userStore.loggedInStatus}`}</Text>
+            <Button onPress={() => userStore.increaseNumber()} title="Plus" /> */}
           </View>
         ) : (
           <View style={styles.welcomeContainer}>
