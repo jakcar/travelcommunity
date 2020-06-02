@@ -5,7 +5,22 @@ import { Formik } from 'formik'
 const SearchForm = () => (
   <Formik
     initialValues={{ from: '', to: '' }}
-    onSubmit={(values) => console.log(values)}
+    onSubmit={(values) => {
+      fetch('http://10.0.2.2:3005/search', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(values)
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          console.log(result)
+        })
+        .catch((error) => {
+          console.error('Error:', error)
+        })
+    }}
   >
     {({ handleChange, handleBlur, handleSubmit, values }) => (
       <View>

@@ -44,19 +44,23 @@ const TabNavigator = observer(({ navigation, route }) => {
         //     iconName="md-person"
         //     onPress={() => alert('hej')}
         //   />
-        <OverflowMenu
-          style={{ marginHorizontal: 10 }}
-          OverflowIcon={<Ionicons name="md-person" size={30} color="#9c9c9c" />}
-        >
-          {userStore.loggedInStatus ? (
-            <HiddenItem title="Logout" onPress={() => userStore.logout()} />
-          ) : (
-            <HiddenItem
-              title="Login"
-              onPress={() => navigation.navigate('Login')}
-            />
-          )}
-        </OverflowMenu>
+        <>
+          <OverflowMenu
+            style={{ marginHorizontal: 10 }}
+            OverflowIcon={
+              <Ionicons name="md-person" size={30} color="#9c9c9c" />
+            }
+          >
+            {userStore.loggedInStatus ? (
+              <HiddenItem title="Logout" onPress={() => userStore.logout()} />
+            ) : (
+              <HiddenItem
+                title="Login"
+                onPress={() => navigation.navigate('Login')}
+              />
+            )}
+          </OverflowMenu>
+        </>
         // </HeaderButtons>
       )
     })

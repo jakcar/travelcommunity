@@ -14,7 +14,11 @@ const LoginScreen = observer(() => {
         contentContainerStyle={styles.contentContainer}
       >
         <View style={styles.welcomeContainer}>
-          {userStore.loggedInStatus ? <Text>Inloggad!</Text> : <LoginForm />}
+          {userStore.loggedInStatus ? (
+            <Text>Välkommen {userStore.userName}!</Text>
+          ) : (
+            <LoginForm />
+          )}
         </View>
       </ScrollView>
     </View>

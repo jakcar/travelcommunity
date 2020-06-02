@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { observer } from 'mobx-react'
 import { useStores } from '../hooks/use-stores'
-import { StyleSheet, Text, View, Button } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 
 const MyTravelsScreen = observer(() => {
-  const { userStore, generalStore } = useStores()
+  const { userStore } = useStores()
   return (
     <View style={styles.container}>
       <ScrollView
@@ -15,9 +15,6 @@ const MyTravelsScreen = observer(() => {
         {userStore.loggedInStatus ? (
           <View style={styles.welcomeContainer}>
             <Text>Användarens resor ska listas här...</Text>
-            {/* <Text> {generalStore.testString}</Text>
-            <Text> {userStore.counter}</Text>
-            <Button onPress={() => userStore.increaseNumber()} title="Plus" /> */}
           </View>
         ) : (
           <View style={styles.welcomeContainer}>
