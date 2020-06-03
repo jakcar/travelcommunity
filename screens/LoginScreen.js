@@ -1,42 +1,42 @@
 import * as React from 'react'
-import { StyleSheet, View, Text } from 'react-native'
-import { ScrollView } from 'react-native-gesture-handler'
+import {
+  StyleSheet,
+  View,
+  Text,
+  TouchableWithoutFeedback,
+  Keyboard
+} from 'react-native'
 import LoginForm from '../components/LoginForm'
 import { observer } from 'mobx-react'
 import { useStores } from '../hooks/use-stores'
 
 const LoginScreen = observer(() => {
   const { userStore } = useStores()
+
   return (
-    <View style={styles.container}>
-      <ScrollView
-        style={styles.container}
-        contentContainerStyle={styles.contentContainer}
-      >
-        <View style={styles.welcomeContainer}>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+      <View style={styles.container}>
+        <View style={styles.contentContainer}>
           {userStore.loggedInStatus ? (
             <Text>Välkommen {userStore.userName}!</Text>
           ) : (
             <LoginForm />
           )}
         </View>
-      </ScrollView>
-    </View>
+      </View>
+    </TouchableWithoutFeedback>
   )
 })
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
-    flex: 1
+    flex: 1,
+    alignItems: 'center'
   },
   contentContainer: {
-    paddingTop: 30
-  },
-  welcomeContainer: {
-    alignItems: 'center',
-    marginBottom: 20,
-    marginTop: 10
+    paddingTop: 30,
+    width: '75%'
   }
 })
 

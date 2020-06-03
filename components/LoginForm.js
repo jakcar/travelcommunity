@@ -1,5 +1,11 @@
 import React, { useState } from 'react'
-import { Button, TextInput, View, StyleSheet, Text } from 'react-native'
+import {
+  TextInput,
+  View,
+  StyleSheet,
+  Text,
+  TouchableOpacity
+} from 'react-native'
 import { Formik } from 'formik'
 import { observer } from 'mobx-react'
 import { useStores } from '../hooks/use-stores'
@@ -50,7 +56,9 @@ const LoginForm = observer(() => {
             onBlur={handleBlur('password')}
             value={values.to}
           />
-          <Button onPress={handleSubmit} title="Login" />
+          <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+            <Text>Logga in</Text>
+          </TouchableOpacity>
           <View style={styles.loginmessagecontainer}>
             <Text style={styles.loginmessage}>{loginMessage}</Text>
           </View>
@@ -65,9 +73,9 @@ const styles = StyleSheet.create({
     borderColor: 'grey',
     borderWidth: 1,
     height: 40,
-    margin: 5,
-    width: 250,
-    padding: 5
+    marginTop: 10,
+    padding: 5,
+    borderRadius: 5
   },
   loginmessagecontainer: {
     alignItems: 'center',
@@ -76,6 +84,14 @@ const styles = StyleSheet.create({
   },
   loginmessage: {
     color: '#ff0000'
+  },
+  button: {
+    alignItems: 'center',
+    backgroundColor: '#DDDDDD',
+    padding: 10,
+    marginTop: 10,
+    elevation: 5,
+    borderRadius: 5
   }
 })
 

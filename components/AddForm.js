@@ -1,6 +1,7 @@
 import React from 'react'
-import { Button, TextInput, View, StyleSheet } from 'react-native'
+import { TextInput, View, TouchableOpacity, Text } from 'react-native'
 import { Formik } from 'formik'
+import { formStyle } from '../constants/FormStyle'
 
 const AddForm = () => (
   <Formik
@@ -11,21 +12,21 @@ const AddForm = () => (
       <View>
         <TextInput
           placeholder="Från:"
-          style={styles.textinput}
+          style={formStyle.textinput}
           onChangeText={handleChange('from')}
           onBlur={handleBlur('from')}
           value={values.from}
         />
         <TextInput
           placeholder="Till:"
-          style={styles.textinput}
+          style={formStyle.textinput}
           onChangeText={handleChange('to')}
           onBlur={handleBlur('to')}
           value={values.to}
         />
         <TextInput
           placeholder="Totalt pris:"
-          style={styles.textinput}
+          style={formStyle.textinput}
           onChangeText={handleChange('price')}
           onBlur={handleBlur('price')}
           value={values.price}
@@ -33,26 +34,21 @@ const AddForm = () => (
         <TextInput
           multiline={true}
           placeholder="Kommentarer:"
-          style={styles.textinput}
+          style={formStyle.textinput}
           onChangeText={handleChange('comments')}
           onBlur={handleBlur('comments')}
           value={values.comments}
         />
-        <Button onPress={handleSubmit} title="Lägg till" />
+        <TouchableOpacity style={formStyle.button} onPress={handleSubmit}>
+          <Text>Lägg till</Text>
+        </TouchableOpacity>
       </View>
     )}
   </Formik>
 )
 
-const styles = StyleSheet.create({
-  textinput: {
-    borderColor: 'grey',
-    borderWidth: 1,
-    height: 40,
-    margin: 5,
-    width: 250,
-    padding: 5
-  }
-})
+{
+  formStyle
+}
 
 export default AddForm

@@ -1,23 +1,26 @@
 import * as React from 'react'
-import { StyleSheet, View, Text } from 'react-native'
-import { ScrollView } from 'react-native-gesture-handler'
+import {
+  StyleSheet,
+  View,
+  TouchableWithoutFeedback,
+  Keyboard
+} from 'react-native'
 import SearchForm from '../components/SearchForm'
+import SearchResults from '../components/SearchResults'
 
 function HomeScreen() {
   return (
-    <View style={styles.container}>
-      <ScrollView
-        style={styles.container}
-        contentContainerStyle={styles.contentContainer}
-      >
-        <View style={styles.welcomeContainer}>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+      <View style={styles.container}>
+        <View style={styles.contentContainer}>
           <SearchForm />
         </View>
-        <View style={styles.welcomeContainer}>
-          <Text>Sökresultat ska visas här...</Text>
+
+        <View style={styles.contentContainer}>
+          <SearchResults />
         </View>
-      </ScrollView>
-    </View>
+      </View>
+    </TouchableWithoutFeedback>
   )
 }
 
@@ -28,15 +31,12 @@ HomeScreen.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
-    flex: 1
+    flex: 1,
+    alignItems: 'center'
   },
   contentContainer: {
-    paddingTop: 30
-  },
-  welcomeContainer: {
-    alignItems: 'center',
-    marginBottom: 20,
-    marginTop: 10
+    paddingTop: 30,
+    width: '75%'
   }
 })
 
