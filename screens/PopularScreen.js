@@ -1,39 +1,19 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 // import { useStores } from '../hooks/use-stores'
-import { StyleSheet, Text, View } from 'react-native'
-import { ScrollView } from 'react-native-gesture-handler'
+import { Text, View } from 'react-native'
+import { containerStyle } from '../styles/ContainerStyle'
 
 const PopularScreen = observer(() => {
   // const { userStore } = useStores()
 
   return (
-    <View style={styles.container}>
-      <ScrollView
-        style={styles.container}
-        contentContainerStyle={styles.contentContainer}
-      >
-        <View style={styles.welcomeContainer}>
-          <Text>Populära resor ska listas här...</Text>
-        </View>
-      </ScrollView>
+    <View style={containerStyle.container}>
+      <View style={containerStyle.centeredContainer}>
+        <Text>Populära resor ska listas här...</Text>
+      </View>
     </View>
   )
 })
 
 export default PopularScreen
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#fff',
-    flex: 1
-  },
-  contentContainer: {
-    paddingTop: 30
-  },
-  welcomeContainer: {
-    alignItems: 'center',
-    marginBottom: 20,
-    marginTop: 10
-  }
-})

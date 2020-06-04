@@ -1,22 +1,15 @@
 import * as React from 'react'
-import {
-  StyleSheet,
-  View,
-  TouchableWithoutFeedback,
-  Keyboard
-} from 'react-native'
+import { View, TouchableWithoutFeedback, Keyboard } from 'react-native'
 import SearchForm from '../components/SearchForm'
 import SearchResults from '../components/SearchResults'
+import { containerStyle } from '../styles/ContainerStyle'
 
 function HomeScreen() {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-      <View style={styles.container}>
-        <View style={styles.contentContainer}>
+      <View style={containerStyle.container}>
+        <View style={containerStyle.contentContainer}>
           <SearchForm />
-        </View>
-
-        <View style={styles.contentContainer}>
           <SearchResults />
         </View>
       </View>
@@ -27,17 +20,5 @@ function HomeScreen() {
 HomeScreen.navigationOptions = {
   header: null
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#fff',
-    flex: 1,
-    alignItems: 'center'
-  },
-  contentContainer: {
-    paddingTop: 30,
-    width: '75%'
-  }
-})
 
 export default HomeScreen

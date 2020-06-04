@@ -9,6 +9,7 @@ import {
 import { Formik } from 'formik'
 import { observer } from 'mobx-react'
 import { useStores } from '../hooks/use-stores'
+import { formStyle } from '../styles/FormStyle'
 
 const LoginForm = observer(() => {
   const { userStore } = useStores()
@@ -43,7 +44,7 @@ const LoginForm = observer(() => {
         <View>
           <TextInput
             placeholder="Username"
-            style={styles.textinput}
+            style={formStyle.textinput}
             onChangeText={handleChange('username')}
             onBlur={handleBlur('username')}
             value={values.from}
@@ -51,12 +52,12 @@ const LoginForm = observer(() => {
           <TextInput
             secureTextEntry={true}
             placeholder="Password"
-            style={styles.textinput}
+            style={formStyle.textinput}
             onChangeText={handleChange('password')}
             onBlur={handleBlur('password')}
             value={values.to}
           />
-          <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+          <TouchableOpacity style={formStyle.button} onPress={handleSubmit}>
             <Text>Logga in</Text>
           </TouchableOpacity>
           <View style={styles.loginmessagecontainer}>
@@ -69,14 +70,6 @@ const LoginForm = observer(() => {
 })
 
 const styles = StyleSheet.create({
-  textinput: {
-    borderColor: 'grey',
-    borderWidth: 1,
-    height: 40,
-    marginTop: 10,
-    padding: 5,
-    borderRadius: 5
-  },
   loginmessagecontainer: {
     alignItems: 'center',
     marginTop: 15,
@@ -84,14 +77,6 @@ const styles = StyleSheet.create({
   },
   loginmessage: {
     color: '#ff0000'
-  },
-  button: {
-    alignItems: 'center',
-    backgroundColor: '#DDDDDD',
-    padding: 10,
-    marginTop: 10,
-    elevation: 5,
-    borderRadius: 5
   }
 })
 

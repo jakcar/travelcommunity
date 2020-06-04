@@ -7,41 +7,37 @@ const SearchResults = observer(() => {
   const { generalStore } = useStores()
 
   return (
-    <View>
-      {generalStore.searchRes && (
-        <View>
-          <FlatList
-            data={generalStore.searchRes}
-            renderItem={({ item }) => (
-              <View style={styles.listcontainer}>
-                <Text>
-                  {item.from} - {item.to}
-                  {'\n'}
-                  {item.traveltime}
-                  {'\n'}
-                </Text>
-                <Text>Delmål:</Text>
-                <FlatList
-                  data={item.milestones}
-                  renderItem={({ item }) => (
-                    <View>
-                      <Text>
-                        {item.city} - {item.resident}
-                      </Text>
-                    </View>
-                  )}
-                  keyExtractor={(item) => item.resident}
-                />
-                <Text></Text>
-                <Text>Pris: {item.price}</Text>
-                <Text>Uppladdad av: {item.username}</Text>
-              </View>
-            )}
-            keyExtractor={(item) => item.traveltime}
-          />
-        </View>
-      )}
-    </View>
+    generalStore.searchRes && (
+      <FlatList
+        data={generalStore.searchRes}
+        renderItem={({ item }) => (
+          <View style={styles.listcontainer}>
+            <Text>
+              {item.from} - {item.to}
+              {'\n'}
+              {item.traveltime}
+              {'\n'}
+            </Text>
+            <Text>Delmål:</Text>
+            <FlatList
+              data={item.milestones}
+              renderItem={({ item }) => (
+                <View>
+                  <Text>
+                    {item.city} - {item.resident}
+                  </Text>
+                </View>
+              )}
+              keyExtractor={(item) => item.resident}
+            />
+            <Text></Text>
+            <Text>Pris: {item.price}</Text>
+            <Text>Uppladdad av: {item.username}</Text>
+          </View>
+        )}
+        keyExtractor={(item) => item.price}
+      />
+    )
   )
 })
 
@@ -50,7 +46,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'grey',
     padding: 25,
-    borderRadius: 10
+    borderRadius: 10,
+    marginTop: 25
   }
 })
 

@@ -67,7 +67,10 @@ const TabNavigator = observer(({ navigation, route }) => {
   }, [userStore.loggedInStatus])
 
   return (
-    <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
+    <BottomTab.Navigator
+      initialRouteName={INITIAL_ROUTE_NAME}
+      style={{ marginBottom: 5 }}
+    >
       <BottomTab.Screen
         name="Home"
         component={HomeScreen}

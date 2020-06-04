@@ -1,7 +1,7 @@
 import React from 'react'
 import { TextInput, View, TouchableOpacity, Text } from 'react-native'
 import { Formik } from 'formik'
-import { formStyle } from '../constants/FormStyle'
+import { formStyle } from '../styles/FormStyle'
 
 const AddForm = () => (
   <Formik
@@ -46,9 +46,5 @@ const AddForm = () => (
     )}
   </Formik>
 )
-
-{
-  formStyle
-}
 
 export default AddForm

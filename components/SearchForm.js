@@ -3,7 +3,7 @@ import { TextInput, View, Keyboard, TouchableOpacity, Text } from 'react-native'
 import { Formik } from 'formik'
 import { observer } from 'mobx-react'
 import { useStores } from '../hooks/use-stores'
-import { formStyle } from '../constants/FormStyle'
+import { formStyle } from '../styles/FormStyle'
 
 const SearchForm = observer(() => {
   const { generalStore } = useStores()
@@ -57,28 +57,5 @@ const SearchForm = observer(() => {
     </Formik>
   )
 })
-
-{
-  formStyle
-}
-
-// const styles = StyleSheet.create({
-//   textinput: {
-//     borderColor: 'grey',
-//     borderWidth: 1,
-//     borderRadius: 5,
-//     height: 40,
-//     marginTop: 10,
-//     padding: 5
-//   },
-//   button: {
-//     alignItems: 'center',
-//     backgroundColor: '#DDDDDD',
-//     padding: 10,
-//     marginTop: 10,
-//     elevation: 5,
-//     borderRadius: 5
-//   }
-// })
 
 export default SearchForm
