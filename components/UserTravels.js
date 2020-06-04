@@ -15,7 +15,7 @@ const UserTravels = observer(() => {
             renderItem={({ item }) => (
               <View style={styles.listcontainer}>
                 <Text>
-                  {item.from} - {item.to}
+                  {item.from} till {item.to}
                   {'\n'}
                   {item.traveltime}
                   {'\n'}

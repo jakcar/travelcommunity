@@ -1,18 +1,40 @@
-import * as React from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, View, Text, FlatList } from 'react-native'
 import { observer } from 'mobx-react'
-import { useStores } from '../hooks/use-stores'
+// import { useStores } from '../hooks/use-stores'
 
-const SearchResults = observer(() => {
-  const { generalStore } = useStores()
+const TopList = observer(() => {
+  //   const { generalStore } = useStores()
+  const [topList, setTopList] = useState([])
 
-  return generalStore.searchRes ? (
+  useEffect(() => {
+    fetch('http://10.0.2.2:3005/travels', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result)
+        setTopList(result)
+      })
+      .catch((error) => {
+        console.error('Error:', error)
+      })
+  }, [])
+
+  return (
     <FlatList
-      keyExtractor={(item) => item.toString(item.id)}
-      data={generalStore.searchRes}
+      keyExtractor={(item) => item.traveltime}
+      showsVerticalScrollIndicator={false}
+      data={topList.travelData}
       renderItem={({ item }) => (
         <View style={styles.listcontainer}>
           <Text>
+            Betyg: {item.ratingScore}
+            {'\n'}
+            {'\n'}
             {item.from} till {item.to}
             {'\n'}
             {item.traveltime}
@@ -36,10 +58,6 @@ const SearchResults = observer(() => {
         </View>
       )}
     />
-  ) : (
-    <View style={styles.searchMessage}>
-      <Text>{generalStore.searchMessage}</Text>
-    </View>
   )
 })
 
@@ -49,12 +67,8 @@ const styles = StyleSheet.create({
     borderColor: 'grey',
     padding: 25,
     borderRadius: 10,
-    marginTop: 25
-  },
-  searchMessage: {
-    marginTop: 25,
-    alignItems: 'center'
+    marginTop: 15
   }
 })
 
-export default SearchResults
+export default TopList

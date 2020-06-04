@@ -1,16 +1,17 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 // import { useStores } from '../hooks/use-stores'
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
 import { containerStyle } from '../styles/ContainerStyle'
+import TopList from '../components/TopList'
 
 const PopularScreen = observer(() => {
   // const { userStore } = useStores()
 
   return (
     <View style={containerStyle.container}>
-      <View style={containerStyle.centeredContainer}>
-        <Text>Populära resor ska listas här...</Text>
+      <View style={containerStyle.contentContainer}>
+        <TopList />
       </View>
     </View>
   )
