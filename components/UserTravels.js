@@ -7,7 +7,7 @@ const UserTravels = observer(() => {
   const { userStore } = useStores()
 
   return (
-    <View>
+    <View style={{ paddingTop: 15 }}>
       {userStore.userTravels && (
         <View>
           <FlatList

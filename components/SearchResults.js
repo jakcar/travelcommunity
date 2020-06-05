@@ -50,7 +50,8 @@ const styles = StyleSheet.create({
     borderColor: 'grey',
     padding: 25,
     borderRadius: 10,
-    marginTop: 15
+    marginTop: 5,
+    marginBottom: 15
   },
   searchMessage: {
     marginTop: 25,

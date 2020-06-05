@@ -5,8 +5,13 @@ export const containerStyle = StyleSheet.create({
     backgroundColor: '#fff',
     flex: 1,
     paddingLeft: '12.5%',
-    paddingRight: '12.5%',
-    paddingTop: 15
+    paddingRight: '12.5%'
+  },
+  listContainer: {
+    backgroundColor: '#fff',
+    flex: 1,
+    paddingLeft: '12.5%',
+    paddingRight: '12.5%'
   },
   contentContainer: {
     // width: '75%'

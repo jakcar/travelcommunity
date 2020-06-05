@@ -9,10 +9,8 @@ const PopularScreen = observer(() => {
   // const { userStore } = useStores()
 
   return (
-    <View style={containerStyle.container}>
-      <View style={containerStyle.contentContainer}>
-        <TopList />
-      </View>
+    <View style={containerStyle.listContainer}>
+      <TopList />
     </View>
   )
 })

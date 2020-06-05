@@ -1,11 +1,5 @@
 import React from 'react'
-import {
-  TextInput,
-  View,
-  TouchableOpacity,
-  Text,
-  ScrollView
-} from 'react-native'
+import { TextInput, View, TouchableOpacity, Text } from 'react-native'
 import { Formik } from 'formik'
 import { formStyle } from '../styles/FormStyle'
 import { Ionicons } from '@expo/vector-icons'
@@ -32,7 +26,7 @@ const AddForm = () => (
     onSubmit={(values) => console.log(values)}
   >
     {({ handleChange, handleBlur, handleSubmit, values, setFieldValue }) => (
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <View style={{ paddingTop: 15, paddingBottom: 15 }}>
         <TextInput
           placeholder="Från:"
           style={formStyle.textinput}
@@ -47,7 +41,7 @@ const AddForm = () => (
           onBlur={handleBlur('fromCountry')}
           value={values.fromCountry}
         />
-        {values.milestones.map((x, index) => (
+        {values.milestones.map((milestone, index) => (
           <View key={index}>
             <Text style={{ marginTop: 15 }}>Delmål:</Text>
             <TextInput
@@ -127,7 +121,7 @@ const AddForm = () => (
         <TouchableOpacity style={formStyle.button} onPress={handleSubmit}>
           <Text>Spara resa</Text>
         </TouchableOpacity>
-      </ScrollView>
+      </View>
     )}
   </Formik>
 )

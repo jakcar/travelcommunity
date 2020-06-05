@@ -26,6 +26,7 @@ const TopList = observer(() => {
 
   return (
     <FlatList
+      style={{ paddingTop: 15 }}
       keyExtractor={(item) => item.traveltime}
       showsVerticalScrollIndicator={false}
       data={topList.travelData}
@@ -67,7 +68,7 @@ const styles = StyleSheet.create({
     borderColor: 'grey',
     padding: 25,
     borderRadius: 10,
-    marginTop: 15
+    marginBottom: 15
   }
 })
 
