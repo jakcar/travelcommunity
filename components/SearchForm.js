@@ -12,6 +12,7 @@ const SearchForm = observer(() => {
     <Formik
       initialValues={{ from: '', to: '' }}
       onSubmit={(values) => {
+        generalStore.handleLoading()
         fetch('http://10.0.2.2:3005/search', {
           method: 'POST',
           headers: {
@@ -22,14 +23,16 @@ const SearchForm = observer(() => {
           .then((response) => response.json())
           .then((result) => {
             generalStore.handleSearch(result.searchresults)
+            generalStore.handleLoading()
           })
           .catch((error) => {
             console.error('Error:', error)
+            generalStore.handleLoading()
           })
       }}
     >
       {({ handleChange, handleBlur, handleSubmit, values }) => (
-        <View>
+        <View style={{ marginBottom: 10 }}>
           <TextInput
             placeholder="Från:"
             style={formStyle.textinput}

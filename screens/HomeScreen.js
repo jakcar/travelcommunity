@@ -1,24 +1,35 @@
 import * as React from 'react'
-import { View, TouchableWithoutFeedback, Keyboard } from 'react-native'
+import {
+  View,
+  TouchableWithoutFeedback,
+  Keyboard,
+  ActivityIndicator
+} from 'react-native'
 import SearchForm from '../components/SearchForm'
 import SearchResults from '../components/SearchResults'
 import { containerStyle } from '../styles/ContainerStyle'
+import { observer } from 'mobx-react'
+import { useStores } from '../hooks/use-stores'
 
-function HomeScreen() {
+const HomeScreen = observer(() => {
+  const { generalStore } = useStores()
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <View style={containerStyle.container}>
-        <View style={containerStyle.contentContainer}>
-          <SearchForm />
+        <SearchForm />
+        {generalStore.isLoading ? (
+          <ActivityIndicator
+            style={{ marginTop: 100 }}
+            size="large"
+            color="grey"
+          />
+        ) : (
           <SearchResults />
-        </View>
+        )}
       </View>
     </TouchableWithoutFeedback>
   )
-}
-
-HomeScreen.navigationOptions = {
-  header: null
-}
+})
 
 export default HomeScreen

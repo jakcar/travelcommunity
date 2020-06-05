@@ -6,7 +6,7 @@ export const containerStyle = StyleSheet.create({
     flex: 1,
     paddingLeft: '12.5%',
     paddingRight: '12.5%',
-    paddingTop: 20
+    paddingTop: 15
   },
   contentContainer: {
     // width: '75%'

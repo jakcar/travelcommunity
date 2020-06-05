@@ -8,8 +8,9 @@ const SearchResults = observer(() => {
 
   return generalStore.searchRes ? (
     <FlatList
-      keyExtractor={(item) => item.toString(item.id)}
+      keyExtractor={(item) => item.price}
       data={generalStore.searchRes}
+      showsVerticalScrollIndicator={false}
       renderItem={({ item }) => (
         <View style={styles.listcontainer}>
           <Text>
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
     borderColor: 'grey',
     padding: 25,
     borderRadius: 10,
-    marginTop: 25
+    marginTop: 15
   },
   searchMessage: {
     marginTop: 25,

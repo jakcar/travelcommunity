@@ -4,7 +4,7 @@ import { observer } from 'mobx-react'
 // import { useStores } from '../hooks/use-stores'
 
 const TopList = observer(() => {
-  //   const { generalStore } = useStores()
+  // const { generalStore } = useStores()
   const [topList, setTopList] = useState([])
 
   useEffect(() => {

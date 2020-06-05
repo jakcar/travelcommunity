@@ -1,6 +1,7 @@
 import { observable } from 'mobx'
 
 const GeneralStore = observable({
+  isLoading: false,
   searchRes: null,
   searchMessage: '',
   handleSearch(payload) {
@@ -10,6 +11,13 @@ const GeneralStore = observable({
     } else {
       this.searchRes = null
       this.searchMessage = 'Inga resultat hittades.'
+    }
+  },
+  handleLoading() {
+    if (this.isLoading) {
+      this.isLoading = false
+    } else {
+      this.isLoading = true
     }
   }
 })
