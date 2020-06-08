@@ -13,7 +13,9 @@ const LoginScreen = observer(() => {
       <View style={containerStyle.container}>
         <View style={containerStyle.contentContainer}>
           {userStore.loggedInStatus ? (
-            <Text>Välkommen {userStore.userName}!</Text>
+            <View style={containerStyle.centeredContainer}>
+              <Text>Välkommen {userStore.userName}!</Text>
+            </View>
           ) : (
             <LoginForm />
           )}

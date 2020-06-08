@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import * as React from 'react'
-import { Ionicons } from '@expo/vector-icons'
+import { MaterialCommunityIcons } from '@expo/vector-icons'
 import {
   // HeaderButtons,
   // HeaderButton,
@@ -48,7 +48,21 @@ const TabNavigator = observer(({ navigation, route }) => {
           <OverflowMenu
             style={{ marginHorizontal: 10 }}
             OverflowIcon={
-              <Ionicons name="md-person" size={30} color="#9c9c9c" />
+              userStore.loggedInStatus ? (
+                <MaterialCommunityIcons
+                  name="logout"
+                  size={28}
+                  color="#9c9c9c"
+                />
+              ) : (
+                <MaterialCommunityIcons
+                  name="login"
+                  size={28}
+                  color="#9c9c9c"
+                />
+              )
+
+              // <Ionicons name="md-person" size={30} color="#9c9c9c" />
             }
           >
             {userStore.loggedInStatus ? (
@@ -91,27 +105,32 @@ const TabNavigator = observer(({ navigation, route }) => {
           )
         }}
       />
-      <BottomTab.Screen
-        name="Add"
-        component={AddTripScreen}
-        options={{
-          title: 'Lägg till',
-          tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} name="md-add-circle" />
-          )
-        }}
-      />
 
-      <BottomTab.Screen
-        name="Links"
-        component={MyTravelsScreen}
-        options={{
-          title: 'Mina resor',
-          tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} name="md-airplane" />
-          )
-        }}
-      />
+      {userStore.loggedInStatus && (
+        <>
+          <BottomTab.Screen
+            name="Add"
+            component={AddTripScreen}
+            options={{
+              title: 'Lägg till',
+              tabBarIcon: ({ focused }) => (
+                <TabBarIcon focused={focused} name="md-add-circle" />
+              )
+            }}
+          />
+
+          <BottomTab.Screen
+            name="Links"
+            component={MyTravelsScreen}
+            options={{
+              title: 'Mina resor',
+              tabBarIcon: ({ focused }) => (
+                <TabBarIcon focused={focused} name="md-airplane" />
+              )
+            }}
+          />
+        </>
+      )}
     </BottomTab.Navigator>
   )
 })

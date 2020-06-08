@@ -23,7 +23,10 @@ const AddForm = () => (
       price: '',
       milestones: []
     }}
-    onSubmit={(values) => console.log(values)}
+    onSubmit={(values, { resetForm }) => {
+      console.log(values)
+      resetForm()
+    }}
   >
     {({ handleChange, handleBlur, handleSubmit, values, setFieldValue }) => (
       <View style={{ paddingTop: 15, paddingBottom: 15 }}>
@@ -43,7 +46,7 @@ const AddForm = () => (
         />
         {values.milestones.map((milestone, index) => (
           <View key={index}>
-            <Text style={{ marginTop: 15 }}>Delmål:</Text>
+            <Text style={{ marginTop: 15 }}>Delmål {index + 1}:</Text>
             <TextInput
               placeholder="Transportmedel:"
               style={formStyle.textinput}

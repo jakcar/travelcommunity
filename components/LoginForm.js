@@ -41,7 +41,7 @@ const LoginForm = observer(() => {
       }}
     >
       {({ handleChange, handleBlur, handleSubmit, values }) => (
-        <View>
+        <View style={{ paddingTop: 15 }}>
           <TextInput
             placeholder="Username"
             style={formStyle.textinput}
