@@ -2,10 +2,10 @@ import { StyleSheet } from 'react-native'
 
 export const containerStyle = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
     flex: 1,
-    paddingLeft: '12.5%',
-    paddingRight: '12.5%'
+    paddingLeft: '10%',
+    paddingRight: '10%',
+    backgroundColor: '#05294b40'
   },
   listContainer: {
     backgroundColor: '#fff',

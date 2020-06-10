@@ -82,6 +82,25 @@ const AddForm = () => (
         />
         <ErrorMessage errorValue={errors.fromCountry} />
 
+        <Text style={{ marginTop: 5, fontSize: 12 }}>
+          Transport till nästa mål:
+        </Text>
+        <View style={formStyle.pickerinput}>
+          <Picker
+            style={{ height: 40 }}
+            itemStyle={{ height: 40 }}
+            selectedValue={values.transportation}
+            onValueChange={(itemValue) =>
+              setFieldValue('transportation', itemValue)
+            }
+          >
+            <Picker.Item label="Tåg" value={1} key={1} />
+            <Picker.Item label="Bil" value={2} key={2} />
+            <Picker.Item label="Båt" value={3} key={3} />
+            <Picker.Item label="Flyg" value={4} key={4} />
+          </Picker>
+        </View>
+
         {values.milestones.map((milestone, index) => (
           <View key={index}>
             <Text style={{ marginTop: 15, fontWeight: 'bold' }}>
@@ -114,26 +133,6 @@ const AddForm = () => (
                 <ErrorMessage errorValue={errors.milestones[index].country} />
               )}
 
-            <Text style={{ marginTop: 15, fontSize: 12 }}>Transportmedel:</Text>
-            <View style={formStyle.pickerinput}>
-              <Picker
-                style={{ height: 40 }}
-                itemStyle={{ height: 40 }}
-                selectedValue={milestone.transportation}
-                onValueChange={(itemValue) =>
-                  setFieldValue(
-                    `milestones[${index}].transportation`,
-                    itemValue
-                  )
-                }
-              >
-                <Picker.Item label="Tåg" value={1} key={1} />
-                <Picker.Item label="Bil" value={2} key={2} />
-                <Picker.Item label="Båt" value={3} key={3} />
-                <Picker.Item label="Flyg" value={4} key={4} />
-                <Picker.Item label="Annat" value={5} key={5} />
-              </Picker>
-            </View>
             <TextInput
               placeholder="Boende:"
               style={formStyle.textinput}
@@ -160,6 +159,29 @@ const AddForm = () => (
               values.milestones.length == errors.milestones.length && (
                 <ErrorMessage errorValue={errors.milestones[index].price} />
               )}
+
+            <Text style={{ marginTop: 15, fontSize: 12 }}>
+              Transport till nästa mål:
+            </Text>
+            <View style={formStyle.pickerinput}>
+              <Picker
+                style={{ height: 40 }}
+                itemStyle={{ height: 40 }}
+                selectedValue={milestone.transportation}
+                onValueChange={(itemValue) =>
+                  setFieldValue(
+                    `milestones[${index}].transportation`,
+                    itemValue
+                  )
+                }
+              >
+                <Picker.Item label="Tåg" value={1} key={1} />
+                <Picker.Item label="Bil" value={2} key={2} />
+                <Picker.Item label="Båt" value={3} key={3} />
+                <Picker.Item label="Flyg" value={4} key={4} />
+                <Picker.Item label="Annat" value={5} key={5} />
+              </Picker>
+            </View>
           </View>
         ))}
 
@@ -172,8 +194,8 @@ const AddForm = () => (
             ])
           }
         >
-          <Text style={{ fontSize: 12 }}>Lägg till delmål:</Text>
-          <Ionicons name="md-add-circle" size={30} color="#9c9c9c" />
+          <Text style={{ fontSize: 12, color: '#000' }}>Lägg till delmål:</Text>
+          <Ionicons name="md-add-circle" size={30} color="#05294b" />
         </TouchableOpacity>
 
         <TextInput
@@ -194,22 +216,6 @@ const AddForm = () => (
         />
         <ErrorMessage errorValue={errors.toCountry} />
 
-        <Text style={{ marginTop: 15, fontSize: 12 }}>Transportmedel:</Text>
-        <View style={formStyle.pickerinput}>
-          <Picker
-            style={{ height: 40 }}
-            itemStyle={{ height: 40 }}
-            selectedValue={values.transportation}
-            onValueChange={(itemValue) =>
-              setFieldValue('transportation', itemValue)
-            }
-          >
-            <Picker.Item label="Tåg" value={1} key={1} />
-            <Picker.Item label="Bil" value={2} key={2} />
-            <Picker.Item label="Båt" value={3} key={3} />
-            <Picker.Item label="Flyg" value={4} key={4} />
-          </Picker>
-        </View>
         <TextInput
           keyboardType={'numeric'}
           placeholder="Total kostnad:"

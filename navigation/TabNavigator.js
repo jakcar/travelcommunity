@@ -1,13 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import * as React from 'react'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
-import {
-  // HeaderButtons,
-  // HeaderButton,
-  // Item,
-  HiddenItem,
-  OverflowMenu
-} from 'react-navigation-header-buttons'
+import { HiddenItem, OverflowMenu } from 'react-navigation-header-buttons'
 
 import { observer } from 'mobx-react'
 import { useStores } from '../hooks/use-stores'
@@ -24,26 +18,11 @@ const INITIAL_ROUTE_NAME = 'Home'
 const TabNavigator = observer(({ navigation, route }) => {
   const { userStore } = useStores()
 
-  // const IoniconsHeaderButton = (props) => (
-  //   <HeaderButton
-  //     {...props}
-  //     IconComponent={Ionicons}
-  //     iconSize={30}
-  //     color="#9c9c9c"
-  //   />
-  // )
-
   navigation.setOptions({ headerTitle: getHeaderTitle(route) })
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        // <HeaderButtons HeaderButtonComponent={IoniconsHeaderButton}>
-        //   <Item
-        //     title="settings"
-        //     iconName="md-person"
-        //     onPress={() => alert('hej')}
-        //   />
         <>
           <OverflowMenu
             style={{ marginHorizontal: 10 }}
@@ -52,17 +31,15 @@ const TabNavigator = observer(({ navigation, route }) => {
                 <MaterialCommunityIcons
                   name="logout"
                   size={28}
-                  color="#9c9c9c"
+                  color="#05294b"
                 />
               ) : (
                 <MaterialCommunityIcons
                   name="login"
                   size={28}
-                  color="#9c9c9c"
+                  color="#05294b"
                 />
               )
-
-              // <Ionicons name="md-person" size={30} color="#9c9c9c" />
             }
           >
             {userStore.loggedInStatus ? (
@@ -75,7 +52,6 @@ const TabNavigator = observer(({ navigation, route }) => {
             )}
           </OverflowMenu>
         </>
-        // </HeaderButtons>
       )
     })
   }, [userStore.loggedInStatus])
@@ -84,6 +60,11 @@ const TabNavigator = observer(({ navigation, route }) => {
     <BottomTab.Navigator
       initialRouteName={INITIAL_ROUTE_NAME}
       style={{ marginBottom: 5 }}
+      tabBarOptions={{
+        activeTintColor: '#05294b',
+        inactiveTintColor: '#ccc',
+        showLabel: true
+      }}
     >
       <BottomTab.Screen
         name="Home"
@@ -95,6 +76,7 @@ const TabNavigator = observer(({ navigation, route }) => {
           )
         }}
       />
+
       <BottomTab.Screen
         name="Popular"
         component={PopularScreen}

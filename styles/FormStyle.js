@@ -6,13 +6,15 @@ export const formStyle = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     marginTop: 10,
-    padding: 5
+    padding: 5,
+    backgroundColor: '#fff'
   },
   pickerinput: {
     borderColor: 'grey',
     borderWidth: 1,
     borderRadius: 5,
-    marginTop: 5
+    marginTop: 5,
+    backgroundColor: '#fff'
   },
   errormessage: {
     fontSize: 10,

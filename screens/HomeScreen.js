@@ -1,10 +1,5 @@
 import * as React from 'react'
-import {
-  View,
-  // TouchableWithoutFeedback,
-  // Keyboard,
-  ActivityIndicator
-} from 'react-native'
+import { View, ActivityIndicator } from 'react-native'
 import SearchForm from '../components/SearchForm'
 import SearchResults from '../components/SearchResults'
 import { containerStyle } from '../styles/ContainerStyle'
@@ -15,7 +10,6 @@ const HomeScreen = observer(() => {
   const { generalStore } = useStores()
 
   return (
-    // <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
     <View style={containerStyle.container}>
       <SearchForm />
       {generalStore.isLoading ? (
@@ -28,7 +22,6 @@ const HomeScreen = observer(() => {
         <SearchResults />
       )}
     </View>
-    // </TouchableWithoutFeedback>
   )
 })
 

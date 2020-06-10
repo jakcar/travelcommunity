@@ -10,9 +10,7 @@ const MyTravelsScreen = observer(() => {
   return (
     <View style={containerStyle.container}>
       {userStore.loggedInStatus ? (
-        <View style={containerStyle.contentContainer}>
-          <UserTravels />
-        </View>
+        <UserTravels />
       ) : (
         <View style={containerStyle.centeredContainer}>
           <Text>Logga in för att se dina resor.</Text>
