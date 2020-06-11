@@ -16,7 +16,7 @@ const HomeScreen = observer(() => {
         <ActivityIndicator
           style={{ marginTop: 100 }}
           size="large"
-          color="grey"
+          color="#fff"
         />
       ) : (
         <SearchResults />

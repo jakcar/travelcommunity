@@ -32,7 +32,7 @@ const SearchForm = observer(() => {
       }}
     >
       {({ handleChange, handleBlur, handleSubmit, values }) => (
-        <View style={{ marginBottom: 10, paddingTop: 15 }}>
+        <View style={{ marginBottom: 10, paddingTop: 10 }}>
           <TextInput
             placeholder="Från:"
             style={formStyle.textinput}

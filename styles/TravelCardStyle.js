@@ -5,10 +5,10 @@ export const travelCardStyle = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 1,
     borderColor: 'grey',
-    padding: 20,
+    padding: 10,
     borderRadius: 10,
     marginTop: 5,
-    marginBottom: 20,
+    marginBottom: 25,
     backgroundColor: '#fff'
   },
   milestoneContainer: {
