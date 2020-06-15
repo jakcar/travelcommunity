@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useState } from 'react'
 import { TextInput, View, TouchableOpacity, Text, Picker } from 'react-native'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
@@ -8,7 +8,7 @@ import { observer } from 'mobx-react'
 import { useStores } from '../hooks/use-stores'
 
 const createMilestone = () => ({
-  transportation: 1,
+  Transportation: 1,
   city: '',
   country: '',
   resident: '',
@@ -41,6 +41,7 @@ const yupSchema = Yup.object().shape({
 
 const AddForm = observer(() => {
   const { userStore } = useStores()
+  const [travelPosted, setTravelPosted] = useState('')
 
   return (
     <Formik
@@ -51,7 +52,7 @@ const AddForm = observer(() => {
         toLoc: '',
         toCountry: '',
         toResident: '',
-        fromTrans: 1,
+        fromTransportation: 1,
         price: '',
         traveltime: '',
         milestones: []
@@ -59,26 +60,26 @@ const AddForm = observer(() => {
       validationSchema={yupSchema}
       validateOnChange={false}
       validateOnBlur={false}
-      onSubmit={(values, { resetForm }) => {
-        console.log(values)
+      onSubmit={(trip, { resetForm }) => {
+        console.log(trip)
 
-        // fetch('http://10.0.2.2:3005/post-travel', {
-        //   method: 'POST',
-        //   headers: {
-        //     'Content-Type': 'application/json'
-        //   },
-        //   body: JSON.stringify(values)
-        // })
-        //   .then((response) => response.json())
-        //   .then((result) => {
-        //     console.log(result)
-        //   })
-        //   .catch((error) => {
-        //     console.error('Error:', error)
-
-        //   })
-
-        resetForm()
+        fetch('http://10.0.2.2:3005/user-app', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(trip)
+        })
+          .then((response) => response.json())
+          .then((result) => {
+            console.log(result)
+            setTravelPosted(result.message)
+            userStore.updateUserTravels()
+            resetForm()
+          })
+          .catch((error) => {
+            console.error('Error:', error)
+          })
       }}
     >
       {({
@@ -116,15 +117,16 @@ const AddForm = observer(() => {
             <Picker
               style={{ height: 40 }}
               itemStyle={{ height: 40 }}
-              selectedValue={values.transportation}
+              selectedValue={values.fromTransportation}
               onValueChange={(itemValue) =>
-                setFieldValue('fromTrans', itemValue)
+                setFieldValue('fromTransportation', itemValue)
               }
             >
+              <Picker.Item label="Flyg" value={0} key={0} />
               <Picker.Item label="Tåg" value={1} key={1} />
-              <Picker.Item label="Bil" value={2} key={2} />
-              <Picker.Item label="Båt" value={3} key={3} />
-              <Picker.Item label="Flyg" value={4} key={4} />
+              <Picker.Item label="Båt" value={2} key={2} />
+              <Picker.Item label="Bil" value={3} key={3} />
+              <Picker.Item label="Buss" value={4} key={4} />
             </Picker>
           </View>
 
@@ -196,19 +198,19 @@ const AddForm = observer(() => {
                 <Picker
                   style={{ height: 40 }}
                   itemStyle={{ height: 40 }}
-                  selectedValue={milestone.transportation}
+                  selectedValue={milestone.Transportation}
                   onValueChange={(itemValue) =>
                     setFieldValue(
-                      `milestones[${index}].transportation`,
+                      `milestones[${index}].Transportation`,
                       itemValue
                     )
                   }
                 >
+                  <Picker.Item label="Flyg" value={0} key={0} />
                   <Picker.Item label="Tåg" value={1} key={1} />
-                  <Picker.Item label="Bil" value={2} key={2} />
-                  <Picker.Item label="Båt" value={3} key={3} />
-                  <Picker.Item label="Flyg" value={4} key={4} />
-                  <Picker.Item label="Annat" value={5} key={5} />
+                  <Picker.Item label="Båt" value={2} key={2} />
+                  <Picker.Item label="Bil" value={3} key={3} />
+                  <Picker.Item label="Buss" value={4} key={4} />
                 </Picker>
               </View>
             </View>
@@ -282,6 +284,10 @@ const AddForm = observer(() => {
             <Ionicons name="md-trash" size={24} color="white" />
             {/* <Text style={{ color: 'white', fontSize: 10 }}>Rensa</Text> */}
           </TouchableOpacity>
+
+          <Text style={{ alignSelf: 'center', padding: 5 }}>
+            {travelPosted}
+          </Text>
         </View>
       )}
     </Formik>

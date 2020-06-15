@@ -109,7 +109,7 @@ const TravelsList = observer((props) => {
   return (
     <FlatList
       style={{ paddingTop: 15 }}
-      keyExtractor={(item) => item.price}
+      keyExtractor={(item) => item.id.toString()}
       data={props.data}
       showsVerticalScrollIndicator={false}
       renderItem={({ item }) => (
@@ -117,13 +117,16 @@ const TravelsList = observer((props) => {
           <Text style={{ alignSelf: 'flex-start' }}>
             {starRating(item.ratingScore)}
           </Text>
-          <Text style={travelCardStyle.travelHeaderOne}>
-            {item.from}, {item.fromCountry}
-          </Text>
+          <View style={travelCardStyle.startLocContainer}>
+            <Text style={travelCardStyle.travelHeaderOne}>
+              {item.from}, {item.fromCountry}
+            </Text>
+          </View>
           <Text>{transportationIcons(item.fromTrans)}</Text>
           <Entypo name="dots-two-vertical" size={24} color="#05294b" />
           <FlatList
             data={item.milestones}
+            keyExtractor={(item) => item.resident}
             renderItem={({ item }) => (
               <View style={travelCardStyle.milestoneWrapper}>
                 <View style={travelCardStyle.milestoneContainer}>
@@ -144,24 +147,28 @@ const TravelsList = observer((props) => {
                 </Text>
               </View>
             )}
-            keyExtractor={(item) => item.resident}
           />
+          <View style={travelCardStyle.endLocContainer}>
+            <Text style={travelCardStyle.travelHeaderOne}>
+              {item.to}, {item.toCountry}
+            </Text>
+            <Text>
+              <FontAwesome5 name="hotel" size={13} color="black" />{' '}
+              {item.toResident}
+            </Text>
+          </View>
 
-          <Text style={travelCardStyle.travelHeaderOne}>
-            {item.to}, {item.toCountry}
-          </Text>
+          <View style={travelCardStyle.recapContainer}>
+            <Text style={travelCardStyle.recapText}>
+              <Ionicons name="ios-hourglass" size={14} color="#05294b" />{' '}
+              {item.traveltime}
+            </Text>
+            <Text style={travelCardStyle.recapText}>
+              <FontAwesome5 name="money-bill-alt" size={14} color="#05294b" />{' '}
+              {item.price}
+            </Text>
+          </View>
 
-          <Text style={travelCardStyle.regularText}>
-            {/* <Ionicons name="ios-hourglass" size={18} color="#05294b" />{' '} */}
-            Restid totalt:
-          </Text>
-          <Text style={travelCardStyle.recapText}>{item.traveltime}</Text>
-
-          <Text style={travelCardStyle.regularText}>
-            {/* <FontAwesome5 name="money-bill-alt" size={18} color="#05294b" />{' '} */}
-            Kostnad totalt:
-          </Text>
-          <Text style={travelCardStyle.recapText}> {item.price}</Text>
           <Text
             style={{
               alignSelf: 'flex-end',
@@ -172,6 +179,15 @@ const TravelsList = observer((props) => {
           >
             <Ionicons name="md-person" size={12} color="#05294b" />{' '}
             {item.username}
+          </Text>
+          <Text
+            style={{
+              alignSelf: 'flex-end',
+              fontSize: 10,
+              color: '#05294b'
+            }}
+          >
+            {item.timestamp}
           </Text>
         </View>
       )}

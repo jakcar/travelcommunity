@@ -24,6 +24,23 @@ const UserStore = observable({
         console.error('Error:', error)
       })
   },
+  updateUserTravels() {
+    fetch('http://10.0.2.2:3005/my-travels', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ username: this.userName })
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        this.userTravels = result
+        console.log(result)
+      })
+      .catch((error) => {
+        console.error('Error:', error)
+      })
+  },
   logout() {
     this.loggedInStatus = false
     this.userName = ''
