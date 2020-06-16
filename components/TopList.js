@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { ActivityIndicator } from 'react-native'
 import { observer } from 'mobx-react'
 import TravelsList from '../components/TravelsList'
+import LoadingSpinner from '../components/LoadingSpinner'
 // import { useStores } from '../hooks/use-stores'
 
 const TopList = observer(() => {
@@ -19,7 +19,6 @@ const TopList = observer(() => {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log(result)
         setTopList(result)
         setFetchInProgress(false)
       })
@@ -29,7 +28,7 @@ const TopList = observer(() => {
   }, [])
 
   return fetchInProgress ? (
-    <ActivityIndicator style={{ marginTop: 100 }} size="large" color="#fff" />
+    <LoadingSpinner />
   ) : (
     <TravelsList data={topList.travelData} />
   )

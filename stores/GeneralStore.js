@@ -19,6 +19,12 @@ const GeneralStore = observable({
     } else {
       this.isLoading = true
     }
+  },
+  startLoading() {
+    this.isLoading = true
+  },
+  stopLoading() {
+    this.isLoading = false
   }
 })
 

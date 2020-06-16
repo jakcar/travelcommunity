@@ -24,14 +24,14 @@ const yupSchema = Yup.object().shape({
   fromCountry: Yup.string().required('Skriv in landet som resan startade i.'),
   toLoc: Yup.string().required('Skriv in staden som resan slutade i.'),
   toCountry: Yup.string().required('Skriv in landet som resan slutade i.'),
-  toResident: Yup.string().required('Skriv slutmålets boende.'),
+  // toResident: Yup.string().required('Skriv slutmålets boende.'),
   price: Yup.string().required('Skriv in det totala priset för resan.'),
   traveltime: Yup.string().required('Skriv in den totala restiden.'),
   milestones: Yup.array().of(
     Yup.object().shape({
       city: Yup.string().required('Skriv in staden för delmålet.'),
       country: Yup.string().required('Skriv in landet för delmålet.'),
-      resident: Yup.string().required('Skriv in ditt boende för delmålet.'),
+      // resident: Yup.string().required('Skriv in ditt boende för delmålet.'),
       price: Yup.string().required(
         'Skriv in kostnaden för resan till delmålet.'
       )
@@ -61,8 +61,6 @@ const AddForm = observer(() => {
       validateOnChange={false}
       validateOnBlur={false}
       onSubmit={(trip, { resetForm }) => {
-        console.log(trip)
-
         fetch('http://10.0.2.2:3005/user-app', {
           method: 'POST',
           headers: {
@@ -72,7 +70,6 @@ const AddForm = observer(() => {
         })
           .then((response) => response.json())
           .then((result) => {
-            console.log(result)
             setTravelPosted(result.message)
             userStore.updateUserTravels()
             resetForm()

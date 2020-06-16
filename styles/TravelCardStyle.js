@@ -25,14 +25,14 @@ export const travelCardStyle = StyleSheet.create({
   },
   endLocContainer: {
     alignItems: 'center',
-    paddingBottom: 20,
+
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
     width: 240,
     borderWidth: 1,
     borderColor: 'grey',
-    padding: 10,
-    marginTop: 5
+    padding: 5,
+    marginTop: 10
     // backgroundColor: '#ccc'
   },
   milestoneContainer: {

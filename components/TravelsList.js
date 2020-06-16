@@ -88,7 +88,7 @@ const TravelsList = observer((props) => {
     let iconName
     switch (iconValue) {
       case 0:
-        iconName = 'md-airplane'
+        iconName = 'ios-airplane'
         break
       case 1:
         iconName = 'md-train'
@@ -134,8 +134,16 @@ const TravelsList = observer((props) => {
                     {item.city}, {item.country}
                   </Text>
                   <Text>
-                    <FontAwesome5 name="hotel" size={13} color="black" />{' '}
-                    {item.resident}
+                    {item.resident ? (
+                      <Text>
+                        <FontAwesome5 name="hotel" size={13} color="black" />{' '}
+                        {item.resident}
+                      </Text>
+                    ) : (
+                      <Text>
+                        <FontAwesome5 name="hotel" size={13} color="black" /> -
+                      </Text>
+                    )}
                   </Text>
                 </View>
 
@@ -152,9 +160,17 @@ const TravelsList = observer((props) => {
             <Text style={travelCardStyle.travelHeaderOne}>
               {item.to}, {item.toCountry}
             </Text>
-            <Text>
-              <FontAwesome5 name="hotel" size={13} color="black" />{' '}
-              {item.toResident}
+            <Text style={{ paddingBottom: 5 }}>
+              {item.toResident ? (
+                <Text style={{ paddingBottom: 5 }}>
+                  <FontAwesome5 name="hotel" size={13} color="black" />{' '}
+                  {item.toResident}
+                </Text>
+              ) : (
+                <Text style={{ paddingBottom: 5 }}>
+                  <FontAwesome5 name="hotel" size={13} color="black" /> -
+                </Text>
+              )}
             </Text>
           </View>
 
