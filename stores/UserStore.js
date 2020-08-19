@@ -8,7 +8,7 @@ const UserStore = observable({
     this.userName = payload
     this.loggedInStatus = true
 
-    fetch('http://10.0.2.2:3005/my-travels', {
+    fetch('http://10.10.65.212:3005/my-travels', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -25,7 +25,7 @@ const UserStore = observable({
       })
   },
   updateUserTravels() {
-    fetch('http://10.0.2.2:3005/my-travels', {
+    fetch('http://10.10.65.212:3005/my-travels', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

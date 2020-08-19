@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react'
 import { observer } from 'mobx-react'
 import TravelsList from '../components/TravelsList'
 import LoadingSpinner from '../components/LoadingSpinner'
-// import { useStores } from '../hooks/use-stores'
+import { useStores } from '../hooks/use-stores'
 
 const TopList = observer(() => {
-  // const { generalStore } = useStores()
+  const { generalStore } = useStores()
   const [topList, setTopList] = useState([])
   const [fetchInProgress, setFetchInProgress] = useState(false)
 
   useEffect(() => {
     setFetchInProgress(true)
-    fetch('http://10.0.2.2:3005/travels', {
+    fetch(generalStore.fetchUrl + '/travels', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

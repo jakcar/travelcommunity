@@ -13,7 +13,7 @@ const SearchForm = observer(() => {
       initialValues={{ from: '', to: '' }}
       onSubmit={(values) => {
         generalStore.startLoading()
-        fetch('http://10.0.2.2:3005/search', {
+        fetch(generalStore.fetchUrl + '/search', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

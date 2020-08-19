@@ -4,6 +4,7 @@ const GeneralStore = observable({
   isLoading: false,
   searchRes: null,
   searchMessage: '',
+  fetchUrl: 'http://10.10.65.212:3005',
   handleSearch(payload) {
     console.log(payload)
     if (payload) {

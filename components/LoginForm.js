@@ -12,14 +12,14 @@ import { useStores } from '../hooks/use-stores'
 import { formStyle } from '../styles/FormStyle'
 
 const LoginForm = observer(() => {
-  const { userStore } = useStores()
+  const { userStore, generalStore } = useStores()
   const [loginMessage, setLoginMessage] = useState('')
 
   return (
     <Formik
       initialValues={{ username: '', password: '' }}
       onSubmit={(values) => {
-        fetch('http://10.0.2.2:3005/login', {
+        fetch(generalStore.fetchUrl + '/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

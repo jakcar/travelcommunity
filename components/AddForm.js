@@ -40,7 +40,7 @@ const yupSchema = Yup.object().shape({
 })
 
 const AddForm = observer(() => {
-  const { userStore } = useStores()
+  const { userStore, generalStore } = useStores()
   const [travelPosted, setTravelPosted] = useState('')
 
   return (
@@ -61,7 +61,7 @@ const AddForm = observer(() => {
       validateOnChange={false}
       validateOnBlur={false}
       onSubmit={(trip, { resetForm }) => {
-        fetch('http://10.0.2.2:3005/user-app', {
+        fetch(generalStore.fetchUrl + '/user-app', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
