@@ -22,7 +22,7 @@
     "babel-preset-react-native": "^4.0.1",
     "expo": "~37.0.9",
     "expo-asset": "~8.1.0",
-    "expo-cli": "^3.24.0",
+    "expo-cli": "^6.3.12",
     "expo-constants": "~9.0.0",
     "expo-font": "~8.1.0",
     "expo-linking": "^1.0.1",
@@ -48,7 +48,7 @@
     "eslint": "^7.1.0",
     "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-react-native": "^3.8.1",
-    "jest-expo": "~37.0.0"
+    "jest-expo": "~54.0.16"
   },
   "private": true
 }
